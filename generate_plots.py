@@ -1,3 +1,4 @@
+import matplotlib.pyplot as plt
 import numpy as np
 
 
@@ -135,3 +136,33 @@ def plot_boxplot(ax, sensor_a, sensor_b):
     ax.grid(True, alpha=0.3)
 
     return None
+
+
+def main():
+    """
+    Generate sensor data, create all plots, and display the figure.
+
+    Parameters
+    ----------
+    None
+
+    Returns
+    -------
+    None
+        This function builds the figure, draws the plots, and displays it.
+    """
+    seed = 3297
+    sensor_a, sensor_b, timestamps = generate_data(seed)
+
+    fig, axes = plt.subplots(1, 3, figsize=(18, 5))
+    plot_scatter(axes[0], timestamps, sensor_a, sensor_b)
+    plot_histogram(axes[1], sensor_a, sensor_b)
+    plot_boxplot(axes[2], sensor_a, sensor_b)
+    fig.tight_layout()
+    plt.show()
+
+    return None
+
+
+if __name__ == "__main__":
+    main()
