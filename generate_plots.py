@@ -35,3 +35,44 @@ def generate_data(seed):
     timestamps = np.linspace(0.0, 10.0, n, dtype=np.float64)
 
     return sensor_a, sensor_b, timestamps
+
+
+def plot_scatter(ax, timestamps, sensor_a, sensor_b):
+    """
+    Plot sensor readings versus time on an existing Matplotlib Axes.
+
+    Parameters
+    ----------
+    ax : matplotlib.axes.Axes
+        Existing Axes object to modify in place.
+    timestamps : numpy.ndarray
+        One-dimensional ``float64`` array of shape ``(200,)`` containing
+        timestamps in seconds for the sensor readings.
+    sensor_a : numpy.ndarray
+        One-dimensional ``float64`` array of shape ``(200,)`` containing
+        Sensor A temperature readings in degrees Celsius.
+    sensor_b : numpy.ndarray
+        One-dimensional ``float64`` array of shape ``(200,)`` containing
+        Sensor B temperature readings in degrees Celsius.
+
+    Returns
+    -------
+    None
+        This function modifies ``ax`` in place and does not return a value.
+    """
+    ax.scatter(timestamps, sensor_a, color="blue", alpha=0.7, s=30, label="Sensor A")
+    ax.scatter(
+        timestamps,
+        sensor_b,
+        color="orange",
+        alpha=0.7,
+        s=30,
+        label="Sensor B",
+    )
+    ax.set_xlabel("Time (s)")
+    ax.set_ylabel("Temperature (°C)")
+    ax.set_title("Sensor Readings vs Time")
+    ax.legend()
+    ax.grid(True, alpha=0.3)
+
+    return None
