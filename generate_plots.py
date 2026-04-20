@@ -76,3 +76,62 @@ def plot_scatter(ax, timestamps, sensor_a, sensor_b):
     ax.grid(True, alpha=0.3)
 
     return None
+
+
+def plot_histogram(ax, sensor_a, sensor_b):
+    """
+    Plot overlaid histograms of the two sensor reading distributions.
+
+    Parameters
+    ----------
+    ax : matplotlib.axes.Axes
+        Existing Axes object to modify in place.
+    sensor_a : numpy.ndarray
+        One-dimensional ``float64`` array of shape ``(200,)`` containing
+        Sensor A temperature readings in degrees Celsius.
+    sensor_b : numpy.ndarray
+        One-dimensional ``float64`` array of shape ``(200,)`` containing
+        Sensor B temperature readings in degrees Celsius.
+
+    Returns
+    -------
+    None
+        This function modifies ``ax`` in place and does not return a value.
+    """
+    ax.hist(sensor_a, bins=20, color="blue", alpha=0.6, label="Sensor A")
+    ax.hist(sensor_b, bins=20, color="orange", alpha=0.6, label="Sensor B")
+    ax.set_xlabel("Temperature (°C)")
+    ax.set_ylabel("Frequency")
+    ax.set_title("Distribution of Sensor Temperature Readings")
+    ax.legend()
+    ax.grid(True, alpha=0.3)
+
+    return None
+
+
+def plot_boxplot(ax, sensor_a, sensor_b):
+    """
+    Plot a box plot comparing the two sensor reading distributions.
+
+    Parameters
+    ----------
+    ax : matplotlib.axes.Axes
+        Existing Axes object to modify in place.
+    sensor_a : numpy.ndarray
+        One-dimensional ``float64`` array of shape ``(200,)`` containing
+        Sensor A temperature readings in degrees Celsius.
+    sensor_b : numpy.ndarray
+        One-dimensional ``float64`` array of shape ``(200,)`` containing
+        Sensor B temperature readings in degrees Celsius.
+
+    Returns
+    -------
+    None
+        This function modifies ``ax`` in place and does not return a value.
+    """
+    ax.boxplot([sensor_a, sensor_b], labels=["Sensor A", "Sensor B"])
+    ax.set_ylabel("Temperature (°C)")
+    ax.set_title("Box Plot of Sensor Temperature Readings")
+    ax.grid(True, alpha=0.3)
+
+    return None
